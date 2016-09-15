@@ -1,0 +1,112 @@
+TO DO as of 4/19 :
+
+Maxie:
+
+----- CUSTOMER ORDER LOOKUP MODS -----
+Add/Edit Customer Lookup pages
+
+
+----- CODE CLEAN UP -----
+
+
+Rearrange Links
+
+
+Andrew:
+
+----- INVENTORY MODS ----
+
+Add & Delete items to inventory management
+
+inventory.php
+
+----- ADMIN ORDER MODS -----
+
+Modify invoice to admin order lookup
+
+adminlookup.php
+
+---- SHIPMENT MODS -----
+
+add shipment creater
+
+this will be a separate page
+
+
+
+
+
+
+
+
+***************************************************************
+
+
+Confirm.php is DONE as of 4/ 19
+
+---- DONE ----
+
+OnHand_Quantity
+
+in Inventory
+
+---- DONE ----
+
+Customer_ID
+Customer_Name
+Phone_Number
+Email
+Street1
+Street2
+City
+State
+Country
+Zip
+
+into Customer
+
+---- DONE ----
+
+Email
+Password
+Account_Type
+
+into Account
+
+---- DONE ----
+
+Order_Number_ID (create)
+Customer_ID
+Order_Date
+Total_Amount
+Order_Status (create)
+product ****** remove this field from table and edit ORDER LOOKUP FILE ******
+quantity ***** remove this field from table and edit ORDER LOOKUP FILE ******
+
+into Orders
+
+---- DONE ----
+
+Order_Number
+Item_Code
+Item_Quantity
+
+into Order Details
+
+---- DONE ----
+
+Invoice_Number (create)
+Order_Number
+Invoice_Status (create)
+
+into Invoice
+
+---- DONE ----
+
+Order Number from Orders
+
+Customer Table fields: customer name , phone number, street address 1 & 2, city , state, country, zip
+
+Account field: Email
+
+Cart fields: item_code, quantity, & images

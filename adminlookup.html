@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+
+    <link href=' css/bootstrap.css' rel= 'stylesheet'>
+    <link href=' css/style.css' rel= 'stylesheet'>
+
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+    function chk(){
+    			$.ajax({
+    				type: 'get',
+    				url: 'adminlookup.php',
+    				cache:false,
+    				success: function(msg){
+    					$('#msg').html(msg);
+    				}
+    			});
+    			return false;
+    		}
+    		$(document).ready(function(){
+    			chk();
+    		});
+    		function find(){
+    			var name = document.getElementById("order_num").value;
+    			var dataStr = "request=Find&name="+name;
+    			$.ajax({
+    				type: 'get',
+    				url: 'adminlookup.php',
+    				data: dataStr,
+    				cache:false,
+    				success: function(msg){
+    					$('#msg').html(msg);
+    				}
+    			});
+    			return false;
+    		}
+    </script>
+
+
+    <nav class= 'row row-centered'>
+      <div class= "col-md-12 col-centered">
+
+        <a href="index.php"> Browse </a>
+        <a href="cart.html"> Cart </a>
+        <a href="index.php"> <img src="images/logo.png" id="logo"> </a>
+        <a href="custlookup.html"> Lookup </a>
+        <a href="inventory.html"> Admin </a>
+      </div>
+
+    </nav>
+
+  </head>
+
+  <body>
+
+    <div class= "container-fluid">
+
+
+      <div class='row form-group'>
+
+        <div class= 'col-md-12 form-inline' >
+
+          <label for="order_num"> Enter Order Number: </label>
+
+          <input type="text" name="order_num" id="order_num" class= "form-control">
+
+          <button name="request" id="create" class="btn btn-primary" onclick="find()" value="Find">Find</button>
+
+        </div>
+
+          <div class= 'row'>
+
+            <div id="msg" class= 'col-md-12'> </div>
+
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+
+  </body>
+
+</html>

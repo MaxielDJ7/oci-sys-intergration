@@ -1,0 +1,154 @@
+.row-centered{
+
+  text-align:center;
+}
+
+.container-fluid{
+
+  padding: 50px 50px;
+}
+
+
+a{
+  padding: 0px 20px;
+  font-size:18px;
+}
+
+
+#logo{
+
+width: 80px;
+height: 100px;
+}
+
+#msg img{
+
+  width: 50px;
+  height: 50px;
+
+}
+
+
+/***** feature ***/
+
+.background{
+
+  background-image: url("../images/banner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 400px;
+  width: 1200px;
+
+  margin:25px 25px 25px 75px ;
+}
+
+/**** end feature ****/
+
+/* ---- Cart -----*/
+
+.total{
+
+  padding-left: 10px;
+}
+
+/* Table */
+
+.table-nonfluid {
+   width: auto !important;
+}
+
+/* end table */
+
+/* ---- End Cart -----*/
+
+
+
+/* ---- confirm -----*/
+
+.confirmphp{
+
+text-align: center;
+
+}
+
+
+/* ---- end confirm -----*/
+
+
+/* ---- custlookup -----*/
+
+.ordersum{
+
+  text-align: center;
+}
+
+
+.append{
+  text-align: center;
+}
+
+
+/* ---- end custlookup -----*/
+
+
+/* ---- admin lookup -----*/
+
+.aorderlookup .btn{
+
+  margin:5px 5px;
+
+
+
+}
+
+
+/* ---- end admin lookup -----*/
+.select{
+
+padding:0px 50px;
+
+}
+
+.confirmphp h2{
+
+margin-top: 20px;
+
+}
+
+/*** input fields stylings ***/
+
+.input{
+
+  margin: 10px 10px;
+}
+
+.input-sm{
+  margin-top: 10px;
+}
+
+.inventory h3{
+  margin-top: 20px;
+}
+
+/* xs small screen size media query */
+@media screen and (max-width:500px) {
+
+  /* navigation */
+
+  nav a{
+
+    padding: 0px 10px;
+  }
+
+  /* banner */
+
+  .background{
+
+    height:200px;
+    background-size: 400px 225px;
+
+  }
+
+
+  };

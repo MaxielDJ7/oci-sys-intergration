@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+
+    <link href=' css/bootstrap.css' rel= 'stylesheet'>
+    <link href=' css/style.css' rel= 'stylesheet'>
+
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script>
+    function chk(){
+    			$.ajax({
+    				type: 'get',
+    				url: 'inventory.php',
+    				cache:false,
+    				success: function(msg){
+    					$('#msg').html(msg);
+    				}
+    			});
+    			return false;
+    		}
+    		$(document).ready(function(){
+    			chk();
+    		});
+    </script>
+
+
+    <nav class= 'row row-centered'>
+      <div class= "col-md-12 col-centered">
+
+        <a href="index.php"> Browse </a>
+        <a href="cart.html"> Cart </a>
+        <a href="index.php"> <img src="images/logo.png" id="logo"> </a>
+        <a href="custlookup.html"> Lookup </a>
+        <a href="inventory.html"> Admin </a>
+      </div>
+
+    </nav>
+
+  </head>
+
+  <body>
+
+    <div class= "container-fluid">
+
+
+      <div class='row form-group inventory'>
+
+			<form action="inventory.php">
+
+        <div class= 'col-md-12 form-inline'>
+
+          <div class= "row">
+
+            <a href="adminlookup.html"> View & Edit Orders </a>
+
+          </div>
+
+          <h3> Add a new product below </h3>
+
+  				<label> Name: </label>
+  				<input type="text" name="name" class= "form-control input-sm" id="name">
+
+  				<label> Code:</label>
+  				<input type="number" name="code" class= "form-control input-sm"  id="code">
+
+  				<label> Quantity:</label>
+  				<input type="number" name="quantity" class= "form-control input-sm" id="quantity">
+
+          <label> Price:</label>
+  				<input type="number" name="price" class= "form-control input-sm" id="price">
+
+          <label> Category:</label>
+  				<input type="text" name="category" class= "form-control input-sm" id="cat">
+
+  				<label> Description:</label>
+  				<input type="text" name="description" class= "form-control input-sm" id="desc">
+
+  				<input type="submit" name="request" class= "btn btn-xs btn-primary " value="Add">
+
+          <h3> Edit an existing product below </h3>
+          
+        </div>
+
+
+
+        <div id="msg" class= 'col-md-12'> </div>
+
+			</form>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+  </body>
+
+</html>

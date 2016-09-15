@@ -1,0 +1,33 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+	function chk(){
+        $.ajax({
+          type: 'POST',
+          url: 'https://web.njit.edu/~asr48/new_oci/cargo.php',
+          data: 'cargo=4980',
+          cache:false,
+          success: function(output){
+			console.log(output);
+          }
+        });
+        return false;
+    }
+	function debug(){
+		var test=document.getElementById('airport').value;
+		console.log(test);
+	}
+</script>
+
+</head>
+<body>
+	<select id="airport" onchange="chk()">
+		<option value="NULL">--------</option>
+		<?php include 'airports.php';?>
+	</select>
+	<button onclick="chk()">check</button>
+	<div id="msg" class= 'col-md-12'> </div>
+
+</body>
+</html>

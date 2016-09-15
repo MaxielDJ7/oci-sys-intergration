@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+
+    <link href=' css/bootstrap.css' rel= 'stylesheet'>
+    <link href=' css/style.css' rel= 'stylesheet'>
+
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+  <script>
+
+    var statuschk= [];
+
+    function statusinfo(arrived, departed, flightnum, fromcode, status, tocode){
+      this.arrived= arrived;
+      this.departed= departed;
+      this.flightnum= flightnum;
+      this.fromcode= fromcode;
+      this.status= status;
+      this.tocode= tocode;
+    }
+
+    var index= 0;
+
+    function showStatuschk(){
+
+      var $newdiv= $("<div id='newdiv' class='col-md-4'/> "),
+
+        //creates label, label text, and retrieves info from airdeets array to append to browser when airport is selected
+
+        alabel= document.createElement("h5"),
+        labelA= document.createTextNode("Arrival Time: "),
+        infoA= document.createTextNode(statuschk[index].arrived),
+
+        dlabel= document.createElement("h5"),
+        labelD= document.createTextNode("Departure Time: "),
+        infoD= document.createTextNode(statuschk[index].departed),
+
+        flabel= document.createElement("h5"),
+        labelF= document.createTextNode("Flight Number: "),
+        infoF= document.createTextNode(statuschk[index].flightnum),
+
+        fclabel= document.createElement("h5"),
+        labelFC= document.createTextNode("Departing From: "),
+        infoFC= document.createTextNode(statuschk[index].fromcode),
+
+        slabel= document.createElement("h5"),
+        labelS= document.createTextNode("Status: "),
+        infoS= document.createTextNode(statuschk[index].status),
+
+        tlabel= document.createElement("h5"),
+        labelT= document.createTextNode("Arriving To: "),
+        infoT= document.createTextNode(statuschk[index].tocode);
+
+
+         //append the label text to the label
+        alabel.appendChild(labelA);
+        dlabel.appendChild(labelD);
+        flabel.appendChild(labelF);
+        fclabel.appendChild(labelFC);
+        slabel.appendChild(labelS);
+        tlabel.appendChild(labelT);
+
+
+        //appends all of the label and information to the div
+        $newdiv.append(alabel,infoA, dlabel, infoD, flabel, infoF, fclabel, infoFC, slabel, infoS, tlabel, infoT);
+
+        //appends the new div to existing div in html
+        $('.append').append($newdiv);
+
+
+    }
+
+
+    function chk(){
+    			$.ajax({
+    				type: 'get',
+    				url: 'custlookup.php',
+    				cache:false,
+    				success: function(msg){
+    					$('#msg').html(msg);
+    				}
+    			});
+    			return false;
+    		}
+
+		$(document).ready(function(){
+			chk();
+		});
+
+		function find(){
+			var name = document.getElementById("order_num").value;
+			var dataStr = "request=Find&name="+name;
+			$.ajax({
+				type: 'get',
+				url: 'custlookup.php',
+				data: dataStr,
+				cache:false,
+				success: function(msg){
+					$('#msg').html(msg);
+				}
+			});
+			return false;
+		}
+
+			function status(order){
+
+          $.ajax({
+            type: 'POST',
+            url: 'https://web.njit.edu/~vha6/IT490/WrongWayAirlines/GetFlightStatus.php',
+            data: JSON.stringify({'cid':order}),
+            contentType: "application/json; charset=utf-8",
+            dataType:'json',
+            cache:false,
+
+            success: function(output){
+    					console.log(output);
+
+              var next = output[0];
+
+              for(var i=0; i<output.length; i++){
+                 var info= output[i];
+                 console.log(info);
+               }
+
+             //example showing inside
+             for (var obj in output.data){
+               //just shows a number index
+               console.log(obj);
+               //shows whats inside
+               console.log(output.data[obj]);
+               //shows specific index of item, double key/val
+               console.log(output.data[obj][0]);
+
+               //records airport infomation into airdeets array
+			}
+               statuschk.push(new statusinfo(
+                 output.data["arrivalTime"],
+                 output.data["departureTime"], output.data["flightNumber"], output.data["fromAirportCode"],
+                 output.data["status"],
+                 output.data["toAirportCode"]));
+
+
+             console.log(statuschk);
+
+             showStatuschk();
+             index++;
+          }
+              });
+              return false;
+
+          }
+    </script>
+
+
+    <nav class= 'row row-centered'>
+      <div class= "col-md-12 col-centered">
+
+        <a href="index.php"> Browse </a>
+        <a href="cart.html"> Cart </a>
+        <a href="index.php"> <img src="images/logo.png" id="logo"> </a>
+        <a href="custlookup.html"> Lookup </a>
+        <a href="inventory.html"> Admin </a>
+      </div>
+
+    </nav>
+
+  </head>
+
+  <body>
+
+    <div class= "container-fluid">
+
+
+      <div class='row form-group form-inline'>
+
+        <div class='row'>
+          <div class= 'col-md-12'>
+
+            <label for="order_num"> Enter Order Number: </label>
+
+            <input type="text" name="order_num" id="order_num" class= "form-control">
+
+            <button name="request" id="create" class="btn btn-primary" onclick="find()" value="Find">Find</button>
+
+          </div>
+      </div>
+          <div class= 'row'>
+
+            <div id="msg" class= 'col-md-12'> </div>
+
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+
+  </body>
+
+</html>
